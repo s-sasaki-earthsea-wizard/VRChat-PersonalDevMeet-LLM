@@ -10,6 +10,16 @@
 - OS: Ubuntu-18.04 (AWS EC2 instance xrdp01-gui)
 - Python: 3.8.6
 
+## 推奨ツール
+
+- VSCode:
+  - Markdown All in One: Markdownの補完・プレビューを提供
+  - Marp for VS Code: スライドのプレビューと作成をサポート
+  - Live Server: リアルタイムでスライドをプレビュー
+  - Prettier - Code formatter: コードやMarkdownを自動整形
+  - YAML: YAMLファイルの編集をサポート
+  - Path Intellisense: ファイルパスの補完
+
 ## インストール方法
 インストール方法を書いてください。
 以下のようなコマンドを書くなどすると手順がわかりやすくなるでしょう。
@@ -25,31 +35,3 @@ make install
 ## その他
 必要なことがあれば書いてください。
 
-_____
-
-# Project name
-Write the name of the project.
-
-## Overview
-Write an overview of the project.
-
-## Development environment
-Write about the development environment. The following is an example.
-
-- OS: Ubuntu-18.04 (AWS EC2 instance xrdp01-gui)
-- Python: 3.8.6
-
-## Installation
-Write down the installation procedure.
-Commands will be useful to make clear as:
-
-```
-make install
-```
-
-## Usage
-Write a running procedure or tutorial.
-Use screenshots and videos if necessary.
-
-## Others
-Anything else, please write here.
