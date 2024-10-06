@@ -1,5 +1,5 @@
-# Use Ruby 3.4.0-preview1 slim-bullseye as the base image
-FROM ruby:3.4.0-preview1-slim-bullseye
+# Use Ruby 3.2 slim-bullseye as the base image
+FROM ruby:3.2-slim-bullseye
 
 # Set ARGs for user creation
 ARG USER_ID
@@ -12,14 +12,23 @@ RUN groupadd -g ${GROUP_ID} fusuma && \
 # Set the working directory in the container
 WORKDIR /app
 
+# Debug: コンフィグファイルを明示的にコピー
+COPY --chown=fusuma:fusuma ./app/config/fusuma/config.yml /app/config/fusuma/config.yml
+
 # Install dependencies for Fusuma
 RUN apt-get update && apt-get install -y \
     libinput-tools \
     xdotool \
     && rm -rf /var/lib/apt/lists/*
 
+# Add libinput to the PATH
+ENV PATH="/usr/libexec/libinput:$PATH"
+
 # Install Fusuma
 RUN gem install fusuma
+
+# Create input group and add fusuma user to it
+RUN groupadd -f input && usermod -a -G input fusuma
 
 # Copy the application code to the working directory
 COPY --chown=fusuma:fusuma . .
@@ -35,4 +44,4 @@ USER fusuma
 EXPOSE ${FUSUMA_PORT}
 
 # Command to run Fusuma
-CMD ["fusuma", "-c", "/app/config/fusuma/config.yml"]
+CMD ["bash"]

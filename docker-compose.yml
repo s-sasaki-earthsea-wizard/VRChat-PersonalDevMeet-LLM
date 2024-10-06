@@ -4,17 +4,21 @@ services:
     build:
       context: .
       args:
-        USER_ID: ${USER_ID}
-        GROUP_ID: ${GROUP_ID}
-    image: ${PROJECT_NAME}-image
-    container_name: ${PROJECT_NAME}-container
+        USER_ID: 1000  # デバッグ用に一時的に固定値を使用
+        GROUP_ID: 1000 # デバッグ用に一時的に固定値を使用
+    image: ${PROJECT_NAME:-vrchat-personaldevmeet-llm}-image
+    container_name: ${PROJECT_NAME:-vrchat-personaldevmeet-llm}-container
     volumes:
-      - .:/app
-      - ~/.config/fusuma:/home/fusuma/.config/fusuma
+      - ./app:/app
+      - ./app/config/fusuma/config.yml:/app/config/fusuma/config.yml
+      - /dev/input:/dev/input
     environment:
-      - FUSUMA_PORT=${FUSUMA_PORT}
+      - FUSUMA_PORT=${FUSUMA_PORT:-8080}
     ports:
-      - "${FUSUMA_PORT}:${FUSUMA_PORT}"
-    user: "${USER_ID}:${GROUP_ID}"
+      - "${FUSUMA_PORT:-8080}:${FUSUMA_PORT:-8080}"
     env_file:
       - .env
+    devices:
+      - "/dev/input:/dev/input"
+    privileged: true
+    command: tail -f /dev/null  # コンテナを起動したままにする

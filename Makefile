@@ -17,9 +17,9 @@ build:
 
 # Run Fusuma in a Docker container
 run:
-	export USER_ID=$(shell id -u) && \
-	export GROUP_ID=$(shell id -g) && \
-	$(COMPOSE) run --rm fusuma fusuma -c /app/config/fusuma/config.yml
+	export USER_ID=1000 && \
+	export GROUP_ID=1000 && \
+	docker compose run --rm fusuma fusuma -c /app/config/fusuma/config.yml --verbose
 
 # Clean up Docker resources
 clean:
@@ -36,6 +36,12 @@ live:
 # Start a bash shell in the Docker container
 bash:
 	$(COMPOSE) run --rm fusuma bash
+
+# ------------------------------------------------------------------------------
+# Generate project summary
+# ------------------------------------------------------------------------------
+summary:
+	python ../generate_project_summary.py
 
 # ------------------------------------------------------------------------------
 # help
