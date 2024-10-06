@@ -2,7 +2,7 @@
 .DEFAULT_GOAL := help
 
 # Variables
-COMPOSE = docker-compose
+COMPOSE = docker compose
 include .env
 
 # ------------------------------------------------------------------------------
@@ -11,10 +11,14 @@ include .env
 
 # Build the Docker image
 build:
+	export USER_ID=$(shell id -u) && \
+	export GROUP_ID=$(shell id -g) && \
 	$(COMPOSE) build
 
 # Run Fusuma in a Docker container
 run:
+	export USER_ID=$(shell id -u) && \
+	export GROUP_ID=$(shell id -g) && \
 	$(COMPOSE) run --rm fusuma fusuma -c /app/config/fusuma/config.yml
 
 # Clean up Docker resources
