@@ -1,14 +1,13 @@
-# プロジェクト名
+# VRChat-PersonalDevMeet-LLM
 プロジェクト名を書いてください。
 
 ## 概要
-プロジェクトの概要を書いてください。
+VRChatのイベント「個人開発集会」でのLTスライドを`fusuma`
 
 ## 開発環境
-開発環境について書きます。以下が例です。
-
-- OS: Ubuntu-18.04 (AWS EC2 instance xrdp01-gui)
-- Python: 3.8.6
+- OS: Ubuntu-18.04
+  - 筆者の環境ですが、Dockerを使えるのならば他のOSでも動くと期待しています
+- Docker: version 24.0.2
 
 ## 推奨ツール
 
